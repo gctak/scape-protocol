@@ -25,4 +25,8 @@ Fornecer recomendações personalizadas e contextualizadas, facilitando a descob
 
 ## 🧪 Status
 
-Protótipo visual estático em desenvolvimento.
+O Falkron ainda está em desenvolvimento.
+
+Neste momento, o foco está na arquitetura da plataforma, modelagem do sistema e implementação dos componentes principais.
+
+Enquanto isso, o domínio oficial hospedará uma experiência **Coming Soon** interativa. Em vez de uma página estática, os visitantes poderão jogar um mini-game inspirado no universo do Falkron enquanto aguardam o lançamento da plataforma.
