@@ -1,32 +1,44 @@
-# Falkron 🎮
+# FALKRON 🎮
 
-Sistema de recomendação de jogos baseado em preferências do usuário e tendências da comunidade gamer.
+> Descubra o que jogar antes de saber o que procurar.
+
+O **Falkron** é uma plataforma web de descoberta e recomendação de jogos que combina **preferências pessoais** com **tendências da comunidade gamer**.
+
+A proposta é ajudar jogadores a encontrar títulos relevantes em meio ao enorme catálogo disponível atualmente — incluindo jogos que estão começando a ganhar atenção e que o usuário talvez ainda nem conheça.
 
 ## 📌 Sobre o projeto
 
-O Falkron é uma aplicação web desenvolvida com o objetivo de auxiliar usuários na descoberta de novos jogos diante do grande volume de opções disponíveis no mercado.
+Encontrar um novo jogo nem sempre é simples. Com milhares de títulos disponíveis em diferentes plataformas, gêneros e estilos, descobrir algo realmente interessante pode exigir bastante pesquisa.
 
-O sistema combina duas fontes principais de informação:
+O Falkron busca simplificar esse processo utilizando duas fontes principais de informação:
 
-* **Preferências individuais do usuário**
-* **Tendências emergentes na comunidade gamer**
+* **Preferências individuais do usuário**, para compreender seus gostos e interesses;
+* **Tendências da comunidade gamer**, para identificar jogos que estão ganhando relevância, popularidade ou discussão.
 
-A proposta é reduzir o esforço cognitivo na busca por novos jogos, destacando títulos relevantes que o usuário provavelmente irá apreciar — inclusive aqueles que ele ainda não conhece.
-
-Diferente de sistemas tradicionais de recomendação, o Falkron incorpora sinais de popularidade e discussão em tempo real (como engajamento em comunidades), priorizando jogos em crescimento ou em evidência.
+A partir da combinação desses sinais, o sistema busca oferecer recomendações mais personalizadas e contextualizadas.
 
 ## 🎯 Problema
 
-Com a grande quantidade de jogos disponíveis, muitos usuários enfrentam dificuldades para encontrar novas experiências alinhadas ao seu gosto, frequentemente recorrendo às mesmas escolhas ou gastando tempo excessivo em pesquisas.
+A grande quantidade de jogos disponíveis pode tornar a descoberta de novos títulos um processo demorado e pouco eficiente.
+
+Além disso, sistemas tradicionais de recomendação tendem a priorizar jogos já consolidados ou basear suas sugestões principalmente no histórico do usuário, dificultando a descoberta de títulos emergentes.
 
 ## 🚀 Objetivo
 
-Fornecer recomendações personalizadas e contextualizadas, facilitando a descoberta de jogos relevantes de forma rápida e eficiente.
+Desenvolver uma plataforma capaz de recomendar jogos com base tanto no **perfil do usuário** quanto no que está acontecendo na **comunidade gamer**, facilitando a descoberta de novas experiências.
 
-## 🧪 Status
+## ✨ Diferencial
 
-O Falkron ainda está em desenvolvimento.
+O Falkron busca combinar:
 
-Neste momento, o foco está na arquitetura da plataforma, modelagem do sistema e implementação dos componentes principais.
+**O que você gosta** + **O que a comunidade está descobrindo**
 
-Enquanto isso, o domínio oficial hospedará uma experiência **Coming Soon** interativa. Em vez de uma página estática, os visitantes poderão jogar um mini-game inspirado no universo do Falkron enquanto aguardam o lançamento da plataforma.
+Dessa forma, além de recomendar jogos compatíveis com o perfil do usuário, a plataforma pretende identificar títulos que estejam crescendo em relevância ou discussão dentro da comunidade.
+
+## 🧪 Status do projeto
+
+🚧 **Em desenvolvimento**
+
+O Falkron está atualmente em fase de desenvolvimento, com foco na construção da identidade visual, experiência da plataforma e definição de seus principais recursos.
+
+Novas funcionalidades e experiências estão sendo desenvolvidas em branches específicas antes de serem integradas à versão principal.
