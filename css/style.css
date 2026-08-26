@@ -78,7 +78,7 @@ main {
 }
 
 .initial-instructions {
-  padding: 50px 0 0 0;
+  padding: 50px 0;
   font-family: var(--font-oxanium);
   font-size: 16px;
   font-weight: 600;
@@ -127,20 +127,25 @@ main {
   border-right: 2px solid var(--color-primary);
 }
 
-footer {
-  padding: 120px 0 0 0;
+.footer {
   position: relative;
+  width: 100%;
+  padding: 120px 0 0 0;
+  display: block;
 }
 
 .site-footer__character {
   height: 200px;
   position: absolute;
-  left: 170px;
-  bottom: 120px;
+  left: 6%;
+  bottom: 65%;
   z-index: 2;
 }
 
 .site-footer__ground {
+  position: absolute;
+  bottom: 0;
+  left: 0;
   width: 100%;
-  display: block;
+  aspect-ratio: 1717 / 165;
 }
