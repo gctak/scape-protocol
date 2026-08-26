@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="imagens/Favicon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Jersey+10&family=Oxanium:wght@200..800&family=Space+Grotesk:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Falkron - //SCAPE PROTOCOL</title>
+  </head>
+  <body>
+    <div class="game-container">
+      <header class="game-hud">
+        <div class="game-hud__container">
+          <div class="game-hud__logos">
+            <img
+              class="falkron-hud__logo"
+              src="./imagens/Logo.png"
+              alt="Falkron"
+            />
+            <h1 class="game-hud__logo">//SCAPE PROTOCOL</h1>
+          </div>
+          <span class="game-hud__score">00000</span>
+        </div>
+      </header>
+      <main class="game-scene">
+        <div class="game-instruction">
+          <img class="key" src="./imagens/SpaceKey.png" alt="Tecla espaço" />
+          <p class="game-instruction__text">PARA COMEÇAR</p>
+        </div>
+        <img
+          class="game-character"
+          src="./imagens/FalkronWaiting.png"
+          alt="Personagem"
+        />
+        <img
+          class="game-obstacle game-obstacle--mine"
+          src="./imagens/Mine.png"
+          alt="Mina"
+        />
+        <img
+          class="game-obstacle game-obstacle--drone"
+          src="./imagens/Drone.png"
+          alt="Drone"
+        />
+        <div class="game-ground">
+          <img class="game-ground__tile" src="./imagens/Ground.png" alt="" />
+          <img class="game-ground__tile" src="./imagens/Ground.png" alt="" />
+        </div>
+      </main>
+    </div>
+    <script src="js/game.js"></script>
+  </body>
+</html>
