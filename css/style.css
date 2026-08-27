@@ -130,22 +130,22 @@ main {
 .footer {
   position: relative;
   width: 100%;
-  padding: 120px 0 0 0;
-  display: block;
+  padding-top: 3.5%;
 }
 
 .site-footer__character {
-  height: 200px;
   position: absolute;
-  left: 6%;
-  bottom: 65%;
-  z-index: 2;
+  left: 5.94%;
+  bottom: 46%;
+  width: clamp(160px, 9vw, 200px);
+  height: auto;
+  image-rendering: pixelated;
+  z-index: 1;
 }
 
 .site-footer__ground {
-  position: absolute;
-  bottom: 0;
-  left: 0;
+  display: block;
   width: 100%;
-  aspect-ratio: 1717 / 165;
+  height: auto;
+  image-rendering: pixelated;
 }
