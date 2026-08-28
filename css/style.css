@@ -214,7 +214,21 @@ main {
 }
 
 .game-obstacle {
-  display: none;
+  position: absolute;
+}
+
+.game-obstacle--mine {
+  height: 50px;
+  bottom: 11vh;
+  right: -150px;
+  z-index: 5;
+}
+
+.game-obstacle--drone {
+  height: 150px;
+  bottom: 40vh;
+  right: -350px;
+  z-index: 6;
 }
 
 .game-ground {
