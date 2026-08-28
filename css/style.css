@@ -27,6 +27,7 @@ main {
   text-align: center;
 }
 
+/*index.html*/
 .site-header {
   padding: 100px 0;
   display: flex;
@@ -95,10 +96,12 @@ main {
   }
   50% {
     opacity: 0.45;
+    color: var(--blink-color);
   }
 }
 
 .initial-instructions__text span {
+  --blink-color: var(--color-text);
   animation: piscar 1.5s ease-in-out infinite;
 }
 
@@ -145,4 +148,92 @@ main {
   width: 100%;
   height: auto;
   image-rendering: pixelated;
+}
+
+/*game.html*/
+.game-container {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.game-hud {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-jersey);
+  font-style: normal;
+  padding: 25px;
+}
+
+.game-hud__logos {
+  gap: 4px;
+}
+
+.falkron-hud__logo {
+  width: 110px;
+}
+
+.game-hud__logo {
+  font-size: 20px;
+  color: var(--color-primary);
+  font-weight: 400;
+}
+
+.game-hud__score {
+  font-size: 50px;
+}
+
+.game-instruction {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.spacekey {
+  height: 80px;
+}
+
+.game-instruction span {
+  color: var(--color-primary);
+  font-size: 20px;
+  --blink-color: var(--color-border);
+  animation: piscar 1.5s ease-in-out infinite;
+}
+
+.game-instruction__text {
+  font-family: var(--font-oxanium);
+  font-weight: 400;
+  font-size: 25px;
+  color: var(--color-primary);
+}
+
+.game-obstacle {
+  display: none;
+}
+
+.game-ground {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  width: 200%;
+}
+
+.game-ground__tile {
+  width: 50%;
+  display: block;
+}
+
+.game-character {
+  position: absolute;
+  bottom: 12%;
+  left: 6%;
+  width: clamp(160px, 9vw, 200px);
+  z-index: 5;
 }
