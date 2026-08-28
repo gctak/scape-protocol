@@ -27,14 +27,11 @@ main {
   text-align: center;
 }
 
-.site-header__container {
+.site-header {
+  padding: 100px 0;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.site-header {
-  padding: 100px 0 100px 0;
 }
 
 .site-header__logo {
