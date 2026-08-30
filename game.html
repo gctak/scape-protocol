@@ -13,32 +13,40 @@
     />
     <title>Falkron - //SCAPE PROTOCOL</title>
   </head>
-  <body class="game-container">
+  <body class="game-page">
     <header class="game-hud">
-      <div class="game-hud__logos">
-        <img class="falkron-hud__logo" src="./imagens/Logo.png" alt="Falkron" />
-        <h1 class="game-hud__logo">//SCAPE PROTOCOL</h1>
+      <div class="game-hud__title">
+        <img
+          class="game-hud__falkron-logo"
+          src="./imagens/Logo.png"
+          alt="Falkron"
+        />
+        <h1 class="game-hud__title">//SCAPE PROTOCOL</h1>
       </div>
       <span class="game-hud__score">00000</span>
     </header>
     <main class="game-scene">
       <div class="game-instruction">
-        <img class="spacekey" src="./imagens/SpaceKey.png" alt="Tecla Espaço" />
+        <img
+          class="game-instruction__key"
+          src="./imagens/SpaceKey.png"
+          alt="Tecla Espaço"
+        />
         <span class="game-instruction__arrow">▼</span>
         <p class="game-instruction__text">PARA COMEÇAR</p>
       </div>
       <img
-        class="game-character"
+        class="game-scene__character"
         src="./imagens/FalkronWaiting.png"
         alt="Personagem"
       />
       <img
-        class="game-obstacle game-obstacle--mine"
+        class="game-scene__obstacle game-scene__obstacle--mine"
         src="./imagens/Mine.png"
         alt="Mina"
       />
       <img
-        class="game-obstacle game-obstacle--drone"
+        class="game-scene__obstacle game-scene__obstacle--drone"
         src="./imagens/Drone.png"
         alt="Drone"
       />

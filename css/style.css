@@ -28,29 +28,29 @@ main {
 }
 
 /*index.html*/
-.site-header {
+.page-header {
   padding: 100px 0;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.site-header__logo {
+.page-header__logo {
   width: 600px;
 }
 
-.intro-section__title {
+.coming-soon__title {
   font-family: var(--font-chakra);
   font-weight: 600;
   font-size: 25px;
   line-height: 1.3;
 }
 
-.intro-section__title span {
+.coming-soon__title span {
   color: var(--color-primary);
 }
 
-.intro-section__description {
+.coming-soon__description {
   font-family: var(--font-grotesk);
   font-size: 16px;
   font-weight: 400;
@@ -58,7 +58,7 @@ main {
   padding: 20px 0 0 0;
 }
 
-.intro-section__cta {
+.coming-soon__cta {
   font-family: var(--font-grotesk);
   font-size: 16px;
   font-weight: 400;
@@ -66,7 +66,7 @@ main {
   padding: 32px 0 0 0;
 }
 
-.intro-section__game-name {
+.coming-soon__game-title {
   font-family: var(--font-jersey);
   font-weight: 400;
   font-style: normal;
@@ -75,7 +75,7 @@ main {
   line-height: 1.2;
 }
 
-.initial-instructions {
+.start-message {
   padding: 50px 0;
   font-family: var(--font-oxanium);
   font-size: 16px;
@@ -83,7 +83,7 @@ main {
   line-height: 1.2;
 }
 
-.initial-instructions__text {
+.start-message__text {
   position: relative;
   display: inline-block;
   padding: 20px 40px;
@@ -100,40 +100,40 @@ main {
   }
 }
 
-.initial-instructions__text span {
+.start-message__text span {
   --blink-color: var(--color-text);
   animation: piscar 1.5s ease-in-out infinite;
 }
 
-.initial-instructions__text::before,
-.initial-instructions__text::after {
+.start-message__text::before,
+.start-message__text::after {
   content: "";
   position: absolute;
   width: 20px;
   height: 20px;
 }
 
-.initial-instructions__text::before {
+.start-message__text::before {
   top: 0;
   left: 0;
   border-top: 2px solid var(--color-primary);
   border-left: 2px solid var(--color-primary);
 }
 
-.initial-instructions__text::after {
+.start-message__text::after {
   bottom: 0;
   right: 0;
   border-bottom: 2px solid var(--color-primary);
   border-right: 2px solid var(--color-primary);
 }
 
-.footer {
+.game-preview {
   position: relative;
   width: 100%;
   padding-top: 3.5%;
 }
 
-.site-footer__character {
+.game-preview__character {
   position: absolute;
   left: 5.94%;
   bottom: 46%;
@@ -143,7 +143,7 @@ main {
   z-index: 1;
 }
 
-.site-footer__ground {
+.game-preview__ground {
   display: block;
   width: 100%;
   height: auto;
@@ -151,7 +151,7 @@ main {
 }
 
 /*game.html*/
-.game-container {
+.game-page {
   position: relative;
   height: 100vh;
   overflow: hidden;
@@ -166,15 +166,15 @@ main {
   padding: 25px;
 }
 
-.game-hud__logos {
+.game-hud__title {
   gap: 4px;
 }
 
-.falkron-hud__logo {
+.game-hud__falkron-logo {
   width: 110px;
 }
 
-.game-hud__logo {
+.game-hud__title {
   font-size: 20px;
   color: var(--color-primary);
   font-weight: 400;
@@ -195,7 +195,7 @@ main {
   gap: 8px;
 }
 
-.spacekey {
+.game-instruction__key {
   height: 80px;
 }
 
@@ -213,18 +213,26 @@ main {
   color: var(--color-primary);
 }
 
-.game-obstacle {
+.game-scene__character {
+  position: absolute;
+  bottom: 12%;
+  left: 6%;
+  width: clamp(160px, 9vw, 200px);
+  z-index: 5;
+}
+
+.game-scene__obstacle {
   position: absolute;
 }
 
-.game-obstacle--mine {
+.game-scene__obstacle--mine {
   height: 50px;
   bottom: 11vh;
   right: -150px;
   z-index: 5;
 }
 
-.game-obstacle--drone {
+.game-scene__obstacle--drone {
   height: 150px;
   bottom: 40vh;
   right: -350px;
@@ -242,12 +250,4 @@ main {
 .game-ground__tile {
   width: 50%;
   display: block;
-}
-
-.game-character {
-  position: absolute;
-  bottom: 12%;
-  left: 6%;
-  width: clamp(160px, 9vw, 200px);
-  z-index: 5;
 }
