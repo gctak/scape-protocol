@@ -168,7 +168,7 @@ main {
 }
 
 .mobile-warning {
-  display: none; /*flex*/
+  display: none;
   justify-content: center;
   align-items: center;
 
@@ -337,5 +337,6 @@ main {
 
   .mobile-warning {
     display: flex;
+    padding: 24px;
   }
 }
