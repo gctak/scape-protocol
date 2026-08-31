@@ -182,23 +182,17 @@ main {
 }
 
 .mobile-warning::before {
-  top: 0;
-  left: 0;
+  top: 40px;
+  left: 40px;
   border-top: 2px solid var(--color-primary);
   border-left: 2px solid var(--color-primary);
 }
 
 .mobile-warning::after {
-  right: 0;
-  bottom: 0;
+  right: 40px;
+  bottom: 40px;
   border-right: 2px solid var(--color-primary);
   border-bottom: 2px solid var(--color-primary);
-}
-
-.mobile-warning__status {
-  font-size: 12px;
-  color: var(--color-primary);
-  letter-spacing: 2px;
 }
 
 .mobile-warning__image {
