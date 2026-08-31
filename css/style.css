@@ -172,29 +172,6 @@ main {
   padding: 24px;
 }
 
-.mobile-warning::before,
-.mobile-warning::after {
-  content: "";
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  pointer-events: none;
-}
-
-.mobile-warning::before {
-  top: 40px;
-  left: 40px;
-  border-top: 2px solid var(--color-primary);
-  border-left: 2px solid var(--color-primary);
-}
-
-.mobile-warning::after {
-  right: 40px;
-  bottom: 40px;
-  border-right: 2px solid var(--color-primary);
-  border-bottom: 2px solid var(--color-primary);
-}
-
 .mobile-warning__image {
   width: min(70vw, 280px);
   height: auto;
