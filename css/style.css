@@ -150,6 +150,81 @@ main {
   image-rendering: pixelated;
 }
 
+/*mobile warning*/
+.mobile-warning__image {
+  width: min(70vw, 280px);
+  height: auto;
+}
+
+.mobile-warning__text {
+  font-family: var(--font-chakra);
+  font-size: 15px;
+}
+
+.mobile-warning__text span {
+  color: var(--color-primary);
+  --blink-color: var(--color-primary);
+  animation: piscar 1.5s ease-in-out infinite;
+}
+
+.mobile-warning {
+  display: none; /*flex*/
+  justify-content: center;
+  align-items: center;
+
+  min-height: 100vh;
+}
+
+.mobile-warning__container {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: fit-content;
+  padding: 32px 40px;
+  gap: 24px;
+
+  text-align: center;
+}
+
+.mobile-warning__container::before,
+.mobile-warning__container::after {
+  content: "";
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+}
+
+.mobile-warning__container::before {
+  top: 0;
+  left: 0;
+
+  border-top: 2px solid var(--color-primary);
+  border-left: 2px solid var(--color-primary);
+}
+
+.mobile-warning__container::after {
+  right: 0;
+  bottom: 0;
+
+  border-right: 2px solid var(--color-primary);
+  border-bottom: 2px solid var(--color-primary);
+}
+
+.mobile-warning__share-btn {
+  color: var(--color-text);
+  font-family: var(--font-chakra);
+  font-weight: 500;
+  font-size: 15px;
+  padding: 10px;
+  border-radius: var(--radius);
+  border: none;
+  background-color: var(--color-border);
+}
+
 /*game.html*/
 .game-page {
   position: relative;
@@ -250,4 +325,17 @@ main {
 .game-ground__tile {
   width: 50%;
   display: block;
+}
+
+/* MOBILE / TOUCH DEVICES*/
+@media (hover: none) and (pointer: coarse) {
+  .page-header,
+  .coming-soon,
+  .game-preview {
+    display: none;
+  }
+
+  .mobile-warning {
+    display: flex;
+  }
 }

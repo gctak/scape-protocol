@@ -3,7 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="imagens/Favicon.png" type="image/x-icon" />
+    <link
+      rel="icon"
+      href="./assets/images/branding/Favicon.png"
+      type="image/x-icon"
+    />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,7 +19,11 @@
   </head>
   <body>
     <header class="page-header">
-      <img class="page-header__logo" src="./imagens/Logo.png" alt="Falkron" />
+      <img
+        class="page-header__logo"
+        src="./assets/images/branding/Logo.png"
+        alt="Falkron"
+      />
     </header>
 
     <main class="coming-soon">
@@ -37,18 +45,34 @@
         </h3>
       </section>
     </main>
-
     <footer class="game-preview">
       <img
         class="game-preview__character"
-        src="./imagens/FalkronWaiting.png"
+        src="./assets/images/characters/FalkronWaiting.png"
         alt="Personagem do jogo em pose inicial"
       />
       <img
         class="game-preview__ground"
-        src="./imagens/Ground.png"
+        src="./assets/images/environment/Ground.png"
         alt="Chão do cenário do jogo"
       />
     </footer>
+    <section class="mobile-warning">
+      <div class="mobile-warning__container">
+        <img
+          class="mobile-warning__image"
+          src="./assets/images/characters/FalkronSignalWeak.png"
+          alt="Mascote Falkron se desfazendo em código binário"
+        />
+        <p class="mobile-warning__text">
+          <span>Sinal fraco</span> em dispositivos móveis.<br />
+          Reinicie em um terminal (<span>PC</span>) para acessar o protocolo.
+        </p>
+
+        <button type="button" class="mobile-warning__share-btn">
+          Compartilhar link
+        </button>
+      </div>
+    </section>
   </body>
 </html>

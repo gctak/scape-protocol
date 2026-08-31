@@ -14,7 +14,7 @@ Você controla o mascote do Falkron (um gato) fugindo de obstáculos que aparece
 
 A ideia do jogo nasceu em um trabalho da disciplina de Interface Homem-Máquina da faculdade. Abaixo está o storyboard original usado no planejamento:
 
-![Storyboard do //scape protocol](./imagens/Storyboard.png)
+![Storyboard do //scape protocol](./assets/docs/Storyboard.png)
 
 > O design final do mascote passou por pequenos ajustes em relação ao storyboard original.
 
