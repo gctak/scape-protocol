@@ -151,46 +151,29 @@ main {
 }
 
 /*mobile warning*/
-.mobile-warning__image {
-  width: min(70vw, 280px);
-  height: auto;
-}
-
-.mobile-warning__text {
-  font-family: var(--font-chakra);
-  font-size: 15px;
-}
-
-.mobile-warning__text span {
-  color: var(--color-primary);
-  --blink-color: var(--color-primary);
-  animation: piscar 1.5s ease-in-out infinite;
-}
-
-.mobile-warning {
-  display: none;
-  justify-content: center;
-  align-items: center;
-
-  min-height: 100vh;
-}
-
 .mobile-warning__container {
   position: relative;
-
   display: flex;
   flex-direction: column;
   align-items: center;
-
   width: fit-content;
   padding: 32px 40px;
   gap: 24px;
-
   text-align: center;
+  font-family: var(--font-chakra);
 }
 
-.mobile-warning__container::before,
-.mobile-warning__container::after {
+.mobile-warning {
+  position: relative;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  min-height: 100dvh;
+  padding: 24px;
+}
+
+.mobile-warning::before,
+.mobile-warning::after {
   content: "";
   position: absolute;
   width: 24px;
@@ -198,30 +181,62 @@ main {
   pointer-events: none;
 }
 
-.mobile-warning__container::before {
+.mobile-warning::before {
   top: 0;
   left: 0;
-
   border-top: 2px solid var(--color-primary);
   border-left: 2px solid var(--color-primary);
 }
 
-.mobile-warning__container::after {
+.mobile-warning::after {
   right: 0;
   bottom: 0;
-
   border-right: 2px solid var(--color-primary);
   border-bottom: 2px solid var(--color-primary);
 }
 
+.mobile-warning__status {
+  font-size: 12px;
+  color: var(--color-primary);
+  letter-spacing: 2px;
+}
+
+.mobile-warning__image {
+  width: min(70vw, 280px);
+  height: auto;
+}
+
+.mobile-warning__message {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mobile-warning__title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.mobile-warning__text {
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.mobile-warning__action {
+  font-size: 15px;
+  font-weight: 600;
+}
+.mobile-warning__action span {
+  color: var(--color-primary);
+}
 .mobile-warning__share-btn {
   color: var(--color-text);
-  font-family: var(--font-chakra);
   font-weight: 500;
   font-size: 15px;
-  padding: 10px;
-  border-radius: var(--radius);
+  padding: 10px 16px;
   border: none;
+  border-radius: var(--radius);
   background-color: var(--color-border);
 }
 
@@ -337,6 +352,5 @@ main {
 
   .mobile-warning {
     display: flex;
-    padding: 24px;
   }
 }
