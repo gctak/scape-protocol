@@ -4,7 +4,7 @@ Minijogo de reflexos criado como parte da divulgação do [Falkron](https://falk
 
 Enquanto o Falkron ainda está em desenvolvimento, o **//scape protocol** funciona como uma forma divertida de entreter quem visita a holding page do projeto.
 
-> ⚠️ **Projeto em desenvolvimento.** O site `falkron.com.br` ainda não está no ar. Este repositório está disponível para fins de portfólio — assim que o Falkron for publicado, o jogo poderá ser jogado diretamente por lá.
+🎮 **Jogue agora:** [falkron.com.br/scape-protocol](https://falkron.com.br/scape-protocol)
 
 ## Sobre o jogo
 
