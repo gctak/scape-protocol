@@ -1,3 +1,3 @@
 document.addEventListener("keydown", () => {
-  window.location.href = "game.html"; ///scape-protocol
+  window.location.href = "/scape-protocol";
 });
