@@ -18,11 +18,13 @@ const downSprites = [
 ];
 let groundPosition = 0;
 let groundMoving = false;
-let jogoComecou = false;
+let gameStarted = false;
 let walkFrame = 0;
 let characterPosition = 6;
 let isJumping = false;
 let isDown = false;
+const scoreDisplay = document.querySelector(".game-hud__score");
+let score = 0;
 
 function jump() {
   isJumping = true;
@@ -64,15 +66,23 @@ function moveGround() {
   requestAnimationFrame(moveGround);
 }
 
+function startScore() {
+  setInterval(() => {
+    score += 1;
+    scoreDisplay.textContent = String(score).padStart(5, "0");
+  }, 1000);
+}
+
 document.addEventListener("keydown", (event) => {
   if (event.code === "Space") {
-    if (!jogoComecou) {
-      jogoComecou = true;
+    if (!gameStarted) {
+      gameStarted = true;
       instruction.style.opacity = "0";
       setTimeout(() => {
         instruction.style.display = "none";
       }, 500);
       walk();
+      startScore();
     }
     jump();
   }
