@@ -16,6 +16,9 @@ const downSprites = [
   "./assets/images/characters/FalkronDownA.png",
   "./assets/images/characters/FalkronDownB.png",
 ];
+const scoreDisplay = document.querySelector(".game-hud__score");
+const mine = document.querySelector(".game-scene__obstacle--mine");
+
 let groundPosition = 0;
 let groundMoving = false;
 let gameStarted = false;
@@ -23,8 +26,40 @@ let walkFrame = 0;
 let characterPosition = 6;
 let isJumping = false;
 let isDown = false;
-const scoreDisplay = document.querySelector(".game-hud__score");
 let score = 0;
+let mineRight = -150;
+let mineWaiting = false;
+const worldSpeed = 3;
+
+function moveGround() {
+  const groundWidthPx = window.innerWidth * 2;
+  const deltaPercent = (worldSpeed / groundWidthPx) * 100;
+
+  groundPosition -= deltaPercent;
+  if (groundPosition <= -50) {
+    groundPosition = 0;
+  }
+  ground.style.transform = `translateX(${groundPosition}%)`;
+  requestAnimationFrame(moveGround);
+}
+
+function moveMine() {
+  if (!mineWaiting) {
+    mineRight += worldSpeed;
+
+    if (mineRight > window.innerWidth) {
+      mineWaiting = true;
+      const delay = numeroAleatorio(2000, 4000);
+      setTimeout(() => {
+        mineRight = -150;
+        mineWaiting = false;
+      }, delay);
+    }
+  }
+
+  mine.style.right = mineRight + "px";
+  requestAnimationFrame(moveMine);
+}
 
 function jump() {
   isJumping = true;
@@ -53,17 +88,9 @@ function walk() {
     } else if (!groundMoving) {
       groundMoving = true;
       moveGround();
+      moveMine();
     }
   }, 200);
-}
-
-function moveGround() {
-  groundPosition -= 0.15;
-  if (groundPosition <= -50) {
-    groundPosition = 0;
-  }
-  ground.style.transform = `translateX(${groundPosition}%)`;
-  requestAnimationFrame(moveGround);
 }
 
 function startScore() {
@@ -87,6 +114,10 @@ document.addEventListener("keydown", (event) => {
     jump();
   }
 });
+
+function numeroAleatorio(min, max) {
+  return Math.random() * (max - min) + min;
+}
 
 document.addEventListener("keydown", (event) => {
   if (event.code === "ArrowDown" && !event.repeat) {
