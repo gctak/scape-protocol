@@ -37,29 +37,6 @@ function jump() {
   }, 400);
 }
 
-function down() {
-  isDown = true;
-  walkSprites.splice(0, walkSprites.length);
-  walkSprites = [
-    "./assets/images/characters/FalkronDownA.png",
-    "./assets/images/characters/FalkronDownB.png",
-  ];
-  character.style.width = "clamp(240px, 9vw, 280px)";
-  walkFrame = (walkFrame + 1) % walkSprites.length;
-  character.src = walkSprites[walkFrame];
-
-  setTimeout(() => {
-    character.style.bottom = originalBottom;
-    character.style.width = originalWidth;
-    isDown = false;
-    walkSprites.splice(0, walkSprites.length);
-    walkSprites = [
-      "./assets/images/characters/FalkronWalkingA.png",
-      "./assets/images/characters/FalkronWalkingB.png",
-    ];
-  }, 400);
-}
-
 function walk() {
   setInterval(() => {
     if (!isJumping) {
