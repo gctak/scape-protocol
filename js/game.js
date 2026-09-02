@@ -1,32 +1,41 @@
 const character = document.querySelector(".game-scene__character");
-
 const originalBottom =
   character.style.bottom || getComputedStyle(character).bottom;
-
 const originalLeft = character.style.left || getComputedStyle(character).left;
-
 const originalWidth =
   character.style.width || getComputedStyle(character).width;
-
-const originalSrc = character.src;
-
 const instruction = document.querySelector(".game-instruction");
-
+const walkSprites = [
+  "./assets/images/characters/FalkronWalkingA.png",
+  "./assets/images/characters/FalkronWalkingB.png",
+];
 let jogoComecou = false;
+let walkFrame = 0;
+let characterPosition = 6;
+let isJumping = false;
 
-let characterPosition = parseFloat(originalLeft);
-function pular() {
+function jump() {
+  isJumping = true;
   character.src = "./assets/images/characters/FalkronJumping.png";
   character.style.bottom = "40%";
-  character.style.left = "3.5%";
   character.style.width = "clamp(240px, 9vw, 280px)";
 
   setTimeout(() => {
-    character.src = "./assets/images/characters/FalkronWalkingA.png";
     character.style.bottom = originalBottom;
-    character.style.left = originalLeft;
     character.style.width = originalWidth;
+    isJumping = false;
   }, 400);
+}
+
+function walk() {
+  setInterval(() => {
+    if (!isJumping) {
+      walkFrame = (walkFrame + 1) % walkSprites.length;
+      character.src = walkSprites[walkFrame];
+    }
+    characterPosition += 1;
+    character.style.left = characterPosition + "%";
+  }, 200);
 }
 
 document.addEventListener("keydown", (event) => {
@@ -37,7 +46,8 @@ document.addEventListener("keydown", (event) => {
       setTimeout(() => {
         instruction.style.display = "none";
       }, 500);
+      walk();
     }
-    pular();
+    jump();
   }
 });
