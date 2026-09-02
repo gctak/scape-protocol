@@ -9,6 +9,10 @@ const walkSprites = [
   "./assets/images/characters/FalkronWalkingA.png",
   "./assets/images/characters/FalkronWalkingB.png",
 ];
+const stopPosition = 15;
+const ground = document.querySelector(".game-ground");
+let groundPosition = 0;
+let groundMoving = false;
 let jogoComecou = false;
 let walkFrame = 0;
 let characterPosition = 6;
@@ -33,9 +37,24 @@ function walk() {
       walkFrame = (walkFrame + 1) % walkSprites.length;
       character.src = walkSprites[walkFrame];
     }
-    characterPosition += 1;
-    character.style.left = characterPosition + "%";
+    if (characterPosition < stopPosition) {
+      characterPosition += 1;
+      character.style.left = characterPosition + "%";
+    } else if (!groundMoving) {
+      groundMoving = true;
+      moveGround();
+    }
   }, 200);
+}
+
+function moveGround() {
+  console.log("moverChao rodando", groundPosition);
+  groundPosition -= 0.15;
+  if (groundPosition <= -50) {
+    groundPosition = 0;
+  }
+  ground.style.transform = `translateX(${groundPosition}%)`;
+  requestAnimationFrame(moveGround);
 }
 
 document.addEventListener("keydown", (event) => {
