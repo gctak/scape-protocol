@@ -281,10 +281,6 @@ main {
   left: 6%;
   width: clamp(160px, 9vw, 200px);
   z-index: 5;
-  transition:
-    bottom 0.3s ease-out,
-    left 0.3s ease-out,
-    width 0.3s ease-out;
 }
 
 .game-scene__obstacle {
