@@ -7,6 +7,10 @@ const character = document.querySelector(".game-scene__character");
 let walkFrame = 0;
 let characterPosition = 6;
 let gameStarted = false;
+let groundMoving = false;
+let groundPosition = 0;
+const ground = document.querySelector(".game-ground");
+const worldSpeed = 4;
 
 function walk() {
   changeSprites();
@@ -15,7 +19,7 @@ function walk() {
   }, 250);
   moveCharacter();
 }
-//Troca as sprites
+
 function changeSprites() {
   walkFrame = (walkFrame + 1) % 2;
   character.src = sprites[walkFrame];
@@ -23,10 +27,27 @@ function changeSprites() {
 
 //Aumenta a posição horizontal do personagem
 function moveCharacter() {
-  characterPosition += 0.25;
-  character.style.left = characterPosition + "%";
+  if (characterPosition < 30) {
+    characterPosition += 0.25;
+    character.style.left = characterPosition + "%";
+    requestAnimationFrame(moveCharacter);
+  } else {
+    //Chão assume o movimento
+    if (!groundMoving) {
+      groundMoving = true;
+      moveGround();
+    }
+  }
+}
 
-  requestAnimationFrame(moveCharacter);
+function moveGround() {
+  const deltaPercent = (worldSpeed / (window.innerWidth * 2)) * 100;
+  groundPosition -= deltaPercent;
+  if (groundPosition <= -50) {
+    groundPosition = 0;
+  }
+  ground.style.transform = `translateX(${groundPosition}%)`;
+  requestAnimationFrame(moveGround);
 }
 
 document.addEventListener("keydown", (event) => {
