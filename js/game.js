@@ -11,6 +11,8 @@ let groundMoving = false;
 let groundPosition = 0;
 const ground = document.querySelector(".game-ground");
 const worldSpeed = 4;
+let score = 0;
+const scoreElement = document.querySelector(".game-hud__score");
 
 function walk() {
   changeSprites();
@@ -50,6 +52,13 @@ function moveGround() {
   requestAnimationFrame(moveGround);
 }
 
+function startScore() {
+  setInterval(() => {
+    score += 1;
+    scoreElement.textContent = score.toString().padStart(5, "0");
+  }, 1000);
+}
+
 document.addEventListener("keydown", (event) => {
   if (event.code === "Space") {
     if (!gameStarted) {
@@ -63,6 +72,8 @@ document.addEventListener("keydown", (event) => {
       character.style.width = "clamp(190px, 9vw, 230px)";
       //Personagem começa a andar
       walk();
+      //Score começa a contar
+      startScore();
     }
   }
 });
