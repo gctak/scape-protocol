@@ -1,5 +1,5 @@
 const instruction = document.querySelector(".game-instruction");
-const sprites = [
+const walkingSprites = [
   "./assets/images/characters/FalkronWalkingA.png",
   "./assets/images/characters/FalkronWalkingB.png",
 ];
@@ -17,6 +17,11 @@ const jumpTotalTime = 600;
 const maximumJumpHeight = 40;
 let startTime;
 let isJumping = false;
+const downSprites = [
+  "./assets/images/characters/FalkronDownA.png",
+  "./assets/images/characters/FalkronDownB.png",
+];
+let isDown = false;
 
 function walk() {
   changeSprites();
@@ -27,11 +32,15 @@ function walk() {
 }
 
 function changeSprites() {
+  //Altera os sprites caso o comando de agachar estiver sendo usado
+  const sprites = isDown ? downSprites : walkingSprites;
   if (!isJumping) {
+    //Altera a proporção do personagem dependendo das sprites a serem usadas
+    character.style.width = isDown
+      ? "clamp(230px, 9vw, 250px)"
+      : "clamp(190px, 9vw, 230px)";
     walkFrame = (walkFrame + 1) % 2;
     character.src = sprites[walkFrame];
-    //Altera a proporção do personagem
-    character.style.width = "clamp(190px, 9vw, 230px)";
   }
 }
 
@@ -73,7 +82,7 @@ function jump() {
   //Altera a sprite do personagem
   character.src = "./assets/images/characters/FalkronJumping.png";
   //Altera a proporção do personagem
-  character.style.width = "clamp(240px, 9vw, 260px)";
+  character.style.width = "clamp(230px, 9vw, 250px)";
   requestAnimationFrame(loopJump);
 }
 
@@ -90,6 +99,7 @@ function loopJump(now) {
   }
 }
 
+//Lógica do espaço
 document.addEventListener("keydown", (event) => {
   if (event.code === "Space") {
     if (!gameStarted) {
@@ -106,5 +116,18 @@ document.addEventListener("keydown", (event) => {
     }
     //Personagem pula
     jump();
+  }
+});
+
+//lógica da seta para baixo
+document.addEventListener("keydown", (event) => {
+  if (event.code === "ArrowDown") {
+    isDown = true;
+  }
+});
+
+document.addEventListener("keyup", (event) => {
+  if (event.code === "ArrowDown") {
+    isDown = false;
   }
 });
