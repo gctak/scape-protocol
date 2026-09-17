@@ -13,8 +13,8 @@ const ground = document.querySelector(".game-ground");
 const worldSpeed = 4;
 let score = 0;
 const scoreElement = document.querySelector(".game-hud__score");
-const jumpTotalTime = 600;
-const maximumJumpHeight = 40;
+const jumpTotalTime = 1100;
+const maximumJumpHeight = 35;
 let startTime;
 let isJumping = false;
 const downSprites = [
@@ -22,6 +22,9 @@ const downSprites = [
   "./assets/images/characters/FalkronDownB.png",
 ];
 let isDown = false;
+let minePosition = -150;
+const mine = document.querySelector(".game-scene__obstacle--mine");
+let isMineHidden = false;
 
 function walk() {
   changeSprites();
@@ -55,6 +58,8 @@ function moveCharacter() {
     if (!groundMoving) {
       groundMoving = true;
       moveGround();
+      //Mina começa a se movimentar
+      moveMine();
     }
   }
 }
@@ -82,7 +87,7 @@ function jump() {
   //Altera a sprite do personagem
   character.src = "./assets/images/characters/FalkronJumping.png";
   //Altera a proporção do personagem
-  character.style.width = "clamp(230px, 9vw, 250px)";
+  character.style.width = "clamp(180px, 9vw, 200px)";
   requestAnimationFrame(loopJump);
 }
 
@@ -97,6 +102,28 @@ function loopJump(now) {
     character.style.bottom = 12 + extraHeight + "%";
     requestAnimationFrame(loopJump);
   }
+}
+
+function moveMine() {
+  if (!isMineHidden) {
+    minePosition += worldSpeed;
+    mine.style.right = minePosition + "px";
+    if (minePosition >= window.innerWidth) {
+      isMineHidden = true;
+      setTimeout(
+        () => {
+          isMineHidden = false;
+          minePosition = -150;
+        },
+        randomNumber(2000, 4000),
+      );
+    }
+  }
+  requestAnimationFrame(moveMine);
+}
+
+function randomNumber(min, max) {
+  return Math.random() * (max - min) + min;
 }
 
 //Lógica do espaço
