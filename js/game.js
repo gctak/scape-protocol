@@ -13,6 +13,10 @@ const ground = document.querySelector(".game-ground");
 const worldSpeed = 4;
 let score = 0;
 const scoreElement = document.querySelector(".game-hud__score");
+const jumpTotalTime = 600;
+const maximumJumpHeight = 40;
+let startTime;
+let isJumping = false;
 
 function walk() {
   changeSprites();
@@ -23,8 +27,12 @@ function walk() {
 }
 
 function changeSprites() {
-  walkFrame = (walkFrame + 1) % 2;
-  character.src = sprites[walkFrame];
+  if (!isJumping) {
+    walkFrame = (walkFrame + 1) % 2;
+    character.src = sprites[walkFrame];
+    //Altera a proporção do personagem
+    character.style.width = "clamp(190px, 9vw, 230px)";
+  }
 }
 
 //Aumenta a posição horizontal do personagem
@@ -59,6 +67,29 @@ function startScore() {
   }, 1000);
 }
 
+function jump() {
+  startTime = performance.now();
+  isJumping = true;
+  //Altera a sprite do personagem
+  character.src = "./assets/images/characters/FalkronJumping.png";
+  //Altera a proporção do personagem
+  character.style.width = "clamp(240px, 9vw, 260px)";
+  requestAnimationFrame(loopJump);
+}
+
+function loopJump(now) {
+  const timePassed = now - startTime;
+  const progress = timePassed / jumpTotalTime;
+  const extraHeight = maximumJumpHeight * 4 * progress * (1 - progress);
+  if (progress >= 1) {
+    character.style.bottom = 12 + "%";
+    isJumping = false;
+  } else {
+    character.style.bottom = 12 + extraHeight + "%";
+    requestAnimationFrame(loopJump);
+  }
+}
+
 document.addEventListener("keydown", (event) => {
   if (event.code === "Space") {
     if (!gameStarted) {
@@ -68,12 +99,12 @@ document.addEventListener("keydown", (event) => {
       setTimeout(() => {
         instruction.style.display = "none";
       }, 500);
-      //Altera a proporção do personagem
-      character.style.width = "clamp(190px, 9vw, 230px)";
       //Personagem começa a andar
       walk();
       //Score começa a contar
       startScore();
     }
+    //Personagem pula
+    jump();
   }
 });
