@@ -241,8 +241,61 @@ main {
   font-weight: 400;
 }
 
-.game-hud__score {
+.game-hud__scores {
   font-size: 50px;
+}
+
+.game-hud__record {
+  color: #afafb7;
+}
+
+.hidden {
+  display: none;
+}
+
+.game-over {
+  display: none;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 150px;
+}
+
+.game-over__title {
+  font-family: var(--font-jersey);
+  font-size: 150px;
+  color: var(--color-text);
+}
+
+.game-over__restart-btn {
+  border-radius: var(--radius);
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px 25px;
+  color: var(--color-text);
+  border: 2px solid var(--color-primary);
+  background-color: var(--color-bg);
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
+  cursor: pointer;
+}
+
+.game-over__restart-btn:hover {
+  background-color: #cd2c25;
+  color: #f2efe6;
+  box-shadow: 0 0 10px rgba(205, 44, 37, 0.35);
+  transform: translateY(-2px);
+}
+.game-over__restart-btn:active {
+  transform: translateY(0);
+  box-shadow: none;
 }
 
 .game-instruction {

@@ -13,7 +13,7 @@ const ground = document.querySelector(".game-ground");
 const worldSpeed = 4;
 let score = 0;
 const scoreElement = document.querySelector(".game-hud__score");
-const jumpTotalTime = 1100;
+const jumpTotalTime = 1000;
 const maximumJumpHeight = 35;
 let startTime;
 let isJumping = false;
@@ -29,6 +29,9 @@ let isGameOver = false;
 let walkInterval;
 let scoreInterval;
 const tolerance = 15;
+const restartButton = document.querySelector(".game-over__restart-btn");
+const gameOver = document.querySelector(".game-over");
+const scoreRecordElement = document.querySelector(".game-hud__record");
 
 function walk() {
   changeSprites();
@@ -129,8 +132,15 @@ function moveMine() {
     isGameOver = true;
     character.src = "./assets/images/characters/FalkronGameOverMine.png";
     character.style.width = "clamp(220px, 9vw, 240px)";
+    //O personagem para de andar
     clearInterval(walkInterval);
+    //O score para de contar
     clearInterval(scoreInterval);
+    //A tela de Game Over se torna visível
+    gameOver.style.display = "flex";
+    //O recorde também
+    scoreRecordElement.classList.remove("hidden");
+    scoreRecordElement.textContent = score.toString().padStart(5, "0");
   }
   if (!isGameOver) {
     requestAnimationFrame(moveMine);
@@ -186,4 +196,9 @@ document.addEventListener("keyup", (event) => {
   if (event.code === "ArrowDown") {
     isDown = false;
   }
+});
+
+//Lógica do botão de restart
+restartButton.addEventListener("click", () => {
+  window.location.href = "game.html";
 });

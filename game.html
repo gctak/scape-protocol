@@ -27,9 +27,16 @@
         />
         <h1 class="game-hud__title">//SCAPE PROTOCOL</h1>
       </div>
-      <span class="game-hud__score">00000</span>
+      <div class="game-hud__scores">
+        <span class="game-hud__record hidden">00000</span>
+        <span class="game-hud__score">00000</span>
+      </div>
     </header>
     <main class="game-scene">
+      <div class="game-over">
+        <p class="game-over__title">GAME OVER</p>
+        <button class="game-over__restart-btn"><span>&#8635;</span></button>
+      </div>
       <div class="game-instruction">
         <img
           class="game-instruction__key"
