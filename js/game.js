@@ -32,6 +32,11 @@ const tolerance = 15;
 const restartButton = document.querySelector(".game-over__restart-btn");
 const gameOver = document.querySelector(".game-over");
 const scoreRecordElement = document.querySelector(".game-hud__record");
+let bestScore = Number(localStorage.getItem("scape-protocol-best-score"));
+if (bestScore !== 0) {
+  scoreRecordElement.classList.remove("hidden");
+  scoreRecordElement.textContent = bestScore.toString().padStart(5, "0");
+}
 
 function walk() {
   changeSprites();
@@ -138,9 +143,13 @@ function moveMine() {
     clearInterval(scoreInterval);
     //A tela de Game Over se torna visível
     gameOver.style.display = "flex";
-    //O recorde também
+    //O recorde se torna visível
     scoreRecordElement.classList.remove("hidden");
-    scoreRecordElement.textContent = score.toString().padStart(5, "0");
+    if (score > bestScore) {
+      bestScore = score;
+      localStorage.setItem("scape-protocol-best-score", `${score}`);
+    }
+    scoreRecordElement.textContent = bestScore.toString().padStart(5, "0");
   }
   if (!isGameOver) {
     requestAnimationFrame(moveMine);
