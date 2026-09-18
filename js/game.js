@@ -25,10 +25,14 @@ let isDown = false;
 let minePosition = -150;
 const mine = document.querySelector(".game-scene__obstacle--mine");
 let isMineHidden = false;
+let isGameOver = false;
+let walkInterval;
+let scoreInterval;
+const tolerance = 15;
 
 function walk() {
   changeSprites();
-  setInterval(() => {
+  walkInterval = setInterval(() => {
     changeSprites();
   }, 250);
   moveCharacter();
@@ -65,17 +69,19 @@ function moveCharacter() {
 }
 
 function moveGround() {
-  const deltaPercent = (worldSpeed / (window.innerWidth * 2)) * 100;
-  groundPosition -= deltaPercent;
-  if (groundPosition <= -50) {
-    groundPosition = 0;
+  if (!isGameOver) {
+    const deltaPercent = (worldSpeed / (window.innerWidth * 2)) * 100;
+    groundPosition -= deltaPercent;
+    if (groundPosition <= -50) {
+      groundPosition = 0;
+    }
+    ground.style.transform = `translateX(${groundPosition}%)`;
+    requestAnimationFrame(moveGround);
   }
-  ground.style.transform = `translateX(${groundPosition}%)`;
-  requestAnimationFrame(moveGround);
 }
 
 function startScore() {
-  setInterval(() => {
+  scoreInterval = setInterval(() => {
     score += 1;
     scoreElement.textContent = score.toString().padStart(5, "0");
   }, 1000);
@@ -119,15 +125,36 @@ function moveMine() {
       );
     }
   }
-  requestAnimationFrame(moveMine);
+  if (checkCollision(character, mine)) {
+    isGameOver = true;
+    character.src = "./assets/images/characters/FalkronGameOverMine.png";
+    character.style.width = "clamp(220px, 9vw, 240px)";
+    clearInterval(walkInterval);
+    clearInterval(scoreInterval);
+  }
+  if (!isGameOver) {
+    requestAnimationFrame(moveMine);
+  }
 }
 
 function randomNumber(min, max) {
   return Math.random() * (max - min) + min;
 }
 
+function checkCollision(element1, element2) {
+  const rect1 = element1.getBoundingClientRect();
+  const rect2 = element2.getBoundingClientRect();
+  return !(
+    rect1.right - tolerance < rect2.left + tolerance ||
+    rect2.right - tolerance < rect1.left + tolerance ||
+    rect1.bottom - tolerance < rect2.top + tolerance ||
+    rect2.bottom - tolerance < rect1.top + tolerance
+  );
+}
+
 //Lógica do espaço
 document.addEventListener("keydown", (event) => {
+  if (isGameOver) return;
   if (event.code === "Space") {
     if (!gameStarted) {
       gameStarted = true;
@@ -148,12 +175,14 @@ document.addEventListener("keydown", (event) => {
 
 //lógica da seta para baixo
 document.addEventListener("keydown", (event) => {
+  if (isGameOver) return;
   if (event.code === "ArrowDown") {
     isDown = true;
   }
 });
 
 document.addEventListener("keyup", (event) => {
+  if (isGameOver) return;
   if (event.code === "ArrowDown") {
     isDown = false;
   }
