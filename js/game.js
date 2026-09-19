@@ -77,15 +77,14 @@ function moveCharacter() {
       moveGround();
       //Mina começa a se movimentar
       moveMine();
-      //Drone começa a se movimentar
       setTimeout(() => {
         if (!isGameOver) {
-          //Troca a instrução
-          key.src = "./assets/images/ui/ArrowKey.png";
-          instructionText.textContent = "PARA ABAIXAR";
+          //Deixa a instrução visível
           instruction.style.display = "flex";
           instruction.style.opacity = "1";
+          //Drone começa a se movimentar
           moveDrone();
+          //Instrução some
           setTimeout(() => {
             instruction.style.opacity = "0";
             setTimeout(() => {
@@ -114,6 +113,9 @@ function startScore() {
   scoreInterval = setInterval(() => {
     score += 1;
     scoreElement.textContent = score.toString().padStart(5, "0");
+    if (score % 10 === 0 && score > 30) {
+      worldSpeed += 0.5;
+    }
   }, 1000);
 }
 
@@ -148,8 +150,7 @@ function moveMine() {
       isMineHidden = true;
       setTimeout(
         () => {
-          isMineHidden = false;
-          minePosition = -150;
+          resetMine();
         },
         randomNumber(2000, 4000),
       );
@@ -203,8 +204,7 @@ function moveDrone() {
       isDroneHidden = true;
       setTimeout(
         () => {
-          isDroneHidden = false;
-          dronePosition = -350;
+          resetDrone();
         },
         randomNumber(2000, 4000),
       );
@@ -235,6 +235,28 @@ function moveDrone() {
   }
 }
 
+function resetMine() {
+  if (Math.abs(minePosition - dronePosition) < 200 && !isDroneHidden) {
+    setTimeout(() => {
+      resetMine();
+    }, 500);
+  } else {
+    isMineHidden = false;
+    minePosition = -150;
+  }
+}
+
+function resetDrone() {
+  if (Math.abs(minePosition - dronePosition) < 200 && !isMineHidden) {
+    setTimeout(() => {
+      resetDrone();
+    }, 500);
+  } else {
+    isDroneHidden = false;
+    dronePosition = -350;
+  }
+}
+
 //Lógica do espaço
 document.addEventListener("keydown", (event) => {
   if (isGameOver) return;
@@ -245,7 +267,11 @@ document.addEventListener("keydown", (event) => {
       instruction.style.opacity = "0";
       setTimeout(() => {
         instruction.style.display = "none";
+        //Troca a instrução
+        key.src = "./assets/images/ui/ArrowKey.png";
+        instructionText.textContent = "PARA ABAIXAR";
       }, 500);
+
       //Personagem começa a andar
       walk();
       //Score começa a contar
