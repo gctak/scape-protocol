@@ -37,6 +37,11 @@ if (bestScore !== 0) {
   scoreRecordElement.classList.remove("hidden");
   scoreRecordElement.textContent = bestScore.toString().padStart(5, "0");
 }
+let dronePosition = -350;
+let isDroneHidden = false;
+const drone = document.querySelector(".game-scene__obstacle--drone");
+const key = document.querySelector(".game-instruction__key");
+const instructionText = document.querySelector(".game-instruction__text");
 
 function walk() {
   changeSprites();
@@ -72,6 +77,23 @@ function moveCharacter() {
       moveGround();
       //Mina começa a se movimentar
       moveMine();
+      //Drone começa a se movimentar
+      setTimeout(() => {
+        if (!isGameOver) {
+          //Troca a instrução
+          key.src = "./assets/images/ui/ArrowKey.png";
+          instructionText.textContent = "PARA ABAIXAR";
+          instruction.style.display = "flex";
+          instruction.style.opacity = "1";
+          moveDrone();
+          setTimeout(() => {
+            instruction.style.opacity = "0";
+            setTimeout(() => {
+              instruction.style.display = "none";
+            }, 500);
+          }, 3000);
+        }
+      }, 7000);
     }
   }
 }
@@ -145,10 +167,12 @@ function moveMine() {
     gameOver.style.display = "flex";
     //O recorde se torna visível
     scoreRecordElement.classList.remove("hidden");
+    //salva o melhor score do usuário
     if (score > bestScore) {
       bestScore = score;
       localStorage.setItem("scape-protocol-best-score", `${score}`);
     }
+    //Escreve o recorde na tela
     scoreRecordElement.textContent = bestScore.toString().padStart(5, "0");
   }
   if (!isGameOver) {
@@ -169,6 +193,46 @@ function checkCollision(element1, element2) {
     rect1.bottom - tolerance < rect2.top + tolerance ||
     rect2.bottom - tolerance < rect1.top + tolerance
   );
+}
+
+function moveDrone() {
+  if (!isDroneHidden) {
+    dronePosition += worldSpeed;
+    drone.style.right = dronePosition + "px";
+    if (dronePosition >= window.innerWidth) {
+      isDroneHidden = true;
+      setTimeout(
+        () => {
+          isDroneHidden = false;
+          dronePosition = -350;
+        },
+        randomNumber(2000, 4000),
+      );
+    }
+  }
+  if (checkCollision(character, drone)) {
+    isGameOver = true;
+    character.src = "./assets/images/characters/FalkronGameOverDrone.png";
+    character.style.width = "clamp(240px, 9vw, 260px)";
+    //O personagem para de andar
+    clearInterval(walkInterval);
+    //O score para de contar
+    clearInterval(scoreInterval);
+    //A tela de Game Over se torna visível
+    gameOver.style.display = "flex";
+    //O recorde se torna visível
+    scoreRecordElement.classList.remove("hidden");
+    //salva o melhor score do usuário
+    if (score > bestScore) {
+      bestScore = score;
+      localStorage.setItem("scape-protocol-best-score", `${score}`);
+    }
+    //Escreve o recorde na tela
+    scoreRecordElement.textContent = bestScore.toString().padStart(5, "0");
+  }
+  if (!isGameOver) {
+    requestAnimationFrame(moveDrone);
+  }
 }
 
 //Lógica do espaço

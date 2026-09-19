@@ -349,7 +349,7 @@ main {
 
 .game-scene__obstacle--drone {
   height: 150px;
-  bottom: 40vh;
+  bottom: 30vh;
   right: -350px;
   z-index: 6;
 }
