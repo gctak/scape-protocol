@@ -4,10 +4,19 @@ document.addEventListener("keydown", (event) => {
 
 const shareButton = document.querySelector(".mobile-warning__share-btn");
 
-shareButton.addEventListener("click", (event) => {
-  navigator.share({
-    title: "Falkron // Acesso ao Terminal",
-    text: "Acesso interrompido. Continue o protocolo em um terminal compatível:",
-    url: "https://falkron.com.br",
-  });
+shareButton.addEventListener("click", async () => {
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title: document.title,
+        text: "Acesso interrompido. Continue o protocolo em um terminal compatível:",
+        url: window.location.href,
+      });
+      console.log("Compartilhado com sucesso!");
+    } catch (error) {
+      console.log("Erro ao compartilhar:", error);
+    }
+  } else {
+    alert("A API de compartilhamento não é suportada neste navegador.");
+  }
 });
