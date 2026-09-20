@@ -1,5 +1,5 @@
 document.addEventListener("keydown", (event) => {
-  window.location.href = "game.html";
+  window.location.href = "/scape-protocol";
 });
 
 const shareButton = document.querySelector(".mobile-warning__share-btn");
