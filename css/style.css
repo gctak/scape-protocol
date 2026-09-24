@@ -28,15 +28,20 @@ main {
 }
 
 /*index.html*/
+.home-page {
+  position: relative;
+  min-height: 100vh;
+}
+
 .page-header {
-  padding: 100px 0;
+  padding: clamp(40px, 12vh, 100px) 0;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .page-header__logo {
-  width: 600px;
+  width: min(600px, 31vw);
 }
 
 .coming-soon__title {
@@ -76,7 +81,7 @@ main {
 }
 
 .start-message {
-  padding: 50px 0;
+  padding: clamp(20px, 6vh, 50px) 0;
   font-family: var(--font-oxanium);
   font-size: 16px;
   font-weight: 600;
@@ -130,14 +135,14 @@ main {
 .game-preview {
   position: relative;
   width: 100%;
-  padding-top: 3.5%;
+  padding-top: 4%;
 }
 
 .game-preview__character {
   position: absolute;
   left: 5.94%;
   bottom: 46%;
-  width: clamp(160px, 9vw, 200px);
+  width: clamp(140px, 9vw, 200px);
   height: auto;
   image-rendering: pixelated;
   z-index: 1;
@@ -377,5 +382,20 @@ main {
 
   .mobile-warning {
     display: flex;
+  }
+}
+
+/*NOTEBOOK*/
+@media (max-height: 700px) and (hover: hover) {
+  .page-header {
+    padding: 50px 0 34px;
+  }
+
+  .start-message {
+    padding: 25px 0 5px;
+  }
+
+  .game-preview {
+    padding-top: 3%;
   }
 }
