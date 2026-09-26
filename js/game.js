@@ -14,7 +14,7 @@ const worldSpeed = 4;
 let score = 0;
 const scoreElement = document.querySelector(".game-hud__score");
 const jumpTotalTime = 1000;
-const maximumJumpHeight = 35;
+const maximumJumpHeight = Math.min(window.innerHeight * 0.35, 300);
 let startTime;
 let isJumping = false;
 const downSprites = [
@@ -42,6 +42,7 @@ let isDroneHidden = false;
 const drone = document.querySelector(".game-scene__obstacle--drone");
 const key = document.querySelector(".game-instruction__key");
 const instructionText = document.querySelector(".game-instruction__text");
+let characterGroundPosition = parseFloat(getComputedStyle(character).bottom);
 
 function walk() {
   changeSprites();
@@ -57,8 +58,8 @@ function changeSprites() {
   if (!isJumping) {
     //Altera a proporção do personagem dependendo das sprites a serem usadas
     character.style.width = isDown
-      ? "clamp(230px, 9vw, 250px)"
-      : "clamp(190px, 9vw, 230px)";
+      ? "clamp(180px, 13vw, 220px)"
+      : "clamp(140px, 9vw, 230px)";
     walkFrame = (walkFrame + 1) % 2;
     character.src = sprites[walkFrame];
   }
@@ -125,7 +126,7 @@ function jump() {
   //Altera a sprite do personagem
   character.src = "./assets/images/characters/FalkronJumping.png";
   //Altera a proporção do personagem
-  character.style.width = "clamp(180px, 9vw, 200px)";
+  character.style.width = "clamp(130px, 10vw, 160px)";
   requestAnimationFrame(loopJump);
 }
 
@@ -134,10 +135,10 @@ function loopJump(now) {
   const progress = timePassed / jumpTotalTime;
   const extraHeight = maximumJumpHeight * 4 * progress * (1 - progress);
   if (progress >= 1) {
-    character.style.bottom = 12 + "%";
+    character.style.bottom = `${characterGroundPosition}px`;
     isJumping = false;
   } else {
-    character.style.bottom = 12 + extraHeight + "%";
+    character.style.bottom = `${characterGroundPosition + extraHeight}px`;
     requestAnimationFrame(loopJump);
   }
 }
@@ -159,7 +160,9 @@ function moveMine() {
   if (checkCollision(character, mine)) {
     isGameOver = true;
     character.src = "./assets/images/characters/FalkronGameOverMine.png";
-    character.style.width = "clamp(220px, 9vw, 240px)";
+    character.style.width = "clamp(160px, 12vw, 210px)";
+    character.style.bottom = `${characterGroundPosition - 5}px`;
+
     //O personagem para de andar
     clearInterval(walkInterval);
     //O score para de contar
@@ -213,7 +216,8 @@ function moveDrone() {
   if (checkCollision(character, drone)) {
     isGameOver = true;
     character.src = "./assets/images/characters/FalkronGameOverDrone.png";
-    character.style.width = "clamp(240px, 9vw, 260px)";
+    character.style.width = "clamp(190px, 30vh, 245px)";
+    character.style.bottom = `${characterGroundPosition - 5}px`;
     //O personagem para de andar
     clearInterval(walkInterval);
     //O score para de contar

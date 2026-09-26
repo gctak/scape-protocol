@@ -219,11 +219,14 @@ main {
 /*game.html*/
 .game-page {
   position: relative;
-  height: 100vh;
+  height: 100dvh;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .game-hud {
+  flex-shrink: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -261,18 +264,17 @@ main {
 .game-over {
   display: none;
   position: absolute;
-  top: 45%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  padding-bottom: 150px;
 }
 
 .game-over__title {
   font-family: var(--font-jersey);
-  font-size: 150px;
+  font-size: clamp(100px, 16vh, 150px);
   color: var(--color-text);
 }
 
@@ -333,11 +335,18 @@ main {
   color: var(--color-primary);
 }
 
+.game-scene {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
 .game-scene__character {
   position: absolute;
-  bottom: 12%;
+  bottom: clamp(80px, 12vh, 115px);
   left: 6%;
-  width: clamp(160px, 9vw, 200px);
+  width: clamp(140px, 9vw, 200px);
   z-index: 5;
 }
 
@@ -354,7 +363,7 @@ main {
 
 .game-scene__obstacle--drone {
   height: 150px;
-  bottom: 30vh;
+  bottom: 32vh;
   right: -350px;
   z-index: 6;
 }
