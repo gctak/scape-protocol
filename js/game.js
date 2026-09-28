@@ -42,6 +42,7 @@ const key = document.querySelector(".game-instruction__key");
 const instructionText = document.querySelector(".game-instruction__text");
 let characterGroundPosition = parseFloat(getComputedStyle(character).bottom);
 let activeObstacle = "mine";
+let speedRatio = 1;
 
 function walk() {
   changeSprites();
@@ -113,6 +114,7 @@ function startScore() {
     scoreElement.textContent = score.toString().padStart(5, "0");
     if (score % 10 === 0 && score > 30) {
       worldSpeed += 0.5;
+      speedRatio = worldSpeed / 4;
     }
   }, 1000);
 }
@@ -161,7 +163,7 @@ function moveMine() {
         () => {
           spawnObstacle();
         },
-        randomNumber(2000, 4000),
+        randomNumber(2000 / speedRatio, 4000 / speedRatio),
       );
     }
   }
@@ -218,7 +220,7 @@ function moveDrone() {
         () => {
           spawnObstacle();
         },
-        randomNumber(2000, 4000),
+        randomNumber(2000 / speedRatio, 4000 / speedRatio),
       );
     }
   }
