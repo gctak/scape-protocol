@@ -10,7 +10,7 @@ let gameStarted = false;
 let groundMoving = false;
 let groundPosition = 0;
 const ground = document.querySelector(".game-ground");
-const worldSpeed = 4;
+let worldSpeed = 4;
 let score = 0;
 const scoreElement = document.querySelector(".game-hud__score");
 const jumpTotalTime = 1000;
@@ -24,7 +24,6 @@ const downSprites = [
 let isDown = false;
 let minePosition = -150;
 const mine = document.querySelector(".game-scene__obstacle--mine");
-let isMineHidden = false;
 let isGameOver = false;
 let walkInterval;
 let scoreInterval;
@@ -38,11 +37,11 @@ if (bestScore !== 0) {
   scoreRecordElement.textContent = bestScore.toString().padStart(5, "0");
 }
 let dronePosition = -350;
-let isDroneHidden = false;
 const drone = document.querySelector(".game-scene__obstacle--drone");
 const key = document.querySelector(".game-instruction__key");
 const instructionText = document.querySelector(".game-instruction__text");
 let characterGroundPosition = parseFloat(getComputedStyle(character).bottom);
+let activeObstacle = "mine";
 
 function walk() {
   changeSprites();
@@ -83,8 +82,6 @@ function moveCharacter() {
           //Deixa a instrução visível
           instruction.style.display = "flex";
           instruction.style.opacity = "1";
-          //Drone começa a se movimentar
-          moveDrone();
           //Instrução some
           setTimeout(() => {
             instruction.style.opacity = "0";
@@ -142,16 +139,27 @@ function loopJump(now) {
     requestAnimationFrame(loopJump);
   }
 }
+function spawnObstacle() {
+  if (Math.random() < 0.5) {
+    activeObstacle = "mine";
+    moveMine();
+  } else {
+    activeObstacle = "drone";
+    moveDrone();
+  }
+}
 
 function moveMine() {
-  if (!isMineHidden) {
+  if (activeObstacle === "mine") {
     minePosition += worldSpeed;
     mine.style.right = minePosition + "px";
     if (minePosition >= window.innerWidth) {
-      isMineHidden = true;
+      activeObstacle = null;
+      //Reseta a posição da mina
+      minePosition = -150;
       setTimeout(
         () => {
-          resetMine();
+          spawnObstacle();
         },
         randomNumber(2000, 4000),
       );
@@ -162,7 +170,6 @@ function moveMine() {
     character.src = "./assets/images/characters/FalkronGameOverMine.png";
     character.style.width = "clamp(160px, 12vw, 210px)";
     character.style.bottom = `${characterGroundPosition - 5}px`;
-
     //O personagem para de andar
     clearInterval(walkInterval);
     //O score para de contar
@@ -179,7 +186,7 @@ function moveMine() {
     //Escreve o recorde na tela
     scoreRecordElement.textContent = bestScore.toString().padStart(5, "0");
   }
-  if (!isGameOver) {
+  if (!isGameOver && activeObstacle === "mine") {
     requestAnimationFrame(moveMine);
   }
 }
@@ -200,14 +207,16 @@ function checkCollision(element1, element2) {
 }
 
 function moveDrone() {
-  if (!isDroneHidden) {
+  if (activeObstacle === "drone") {
     dronePosition += worldSpeed;
     drone.style.right = dronePosition + "px";
     if (dronePosition >= window.innerWidth) {
-      isDroneHidden = true;
+      activeObstacle = null;
+      //Reseta a posição do drone
+      dronePosition = -350;
       setTimeout(
         () => {
-          resetDrone();
+          spawnObstacle();
         },
         randomNumber(2000, 4000),
       );
@@ -234,30 +243,8 @@ function moveDrone() {
     //Escreve o recorde na tela
     scoreRecordElement.textContent = bestScore.toString().padStart(5, "0");
   }
-  if (!isGameOver) {
+  if (!isGameOver && activeObstacle === "drone") {
     requestAnimationFrame(moveDrone);
-  }
-}
-
-function resetMine() {
-  if (Math.abs(minePosition - dronePosition) < 200 && !isDroneHidden) {
-    setTimeout(() => {
-      resetMine();
-    }, 500);
-  } else {
-    isMineHidden = false;
-    minePosition = -150;
-  }
-}
-
-function resetDrone() {
-  if (Math.abs(minePosition - dronePosition) < 200 && !isMineHidden) {
-    setTimeout(() => {
-      resetDrone();
-    }, 500);
-  } else {
-    isDroneHidden = false;
-    dronePosition = -350;
   }
 }
 
