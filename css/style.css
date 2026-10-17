@@ -188,15 +188,12 @@ main {
   gap: 12px;
 }
 
-.mobile-warning__title {
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--color-primary);
-}
-
 .mobile-warning__text {
   font-size: 15px;
   line-height: 1.5;
+}
+.mobile-warning__title {
+  color: var(--color-primary);
 }
 
 .mobile-warning__action {
@@ -206,7 +203,7 @@ main {
 .mobile-warning__action span {
   color: var(--color-primary);
 }
-.mobile-warning__share-btn {
+.mobile-warning__insta-btn {
   color: var(--color-text);
   font-weight: 500;
   font-size: 15px;
@@ -214,6 +211,7 @@ main {
   border: none;
   border-radius: var(--radius);
   background-color: var(--color-border);
+  text-decoration: none;
 }
 
 /*game.html*/
